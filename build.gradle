@@ -1,0 +1,147 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath(
+                ["org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"]
+                ["mysql:mysql-connector-java:$mysqlVersion"],
+                ["org.flywaydb:flyway-gradle-plugin:3.1"],
+                ["com.github.amkay:gradle-gitflow:0.2.0"]
+        )
+    }
+}
+
+allprojects {
+    task hello << { task -> println "I'm $task.project.name" }
+}
+
+subprojects {
+    apply plugin: "java"
+}
+
+
+def excludeModules = ['spring-security-acl', 'jsr250-api', 'ehcache', 'spring-jdbc', 'spring-tx']
+
+
+group "com.aeg"
+version '1.0-SNAPSHOT'
+
+apply plugin: 'com.github.amkay.gitflow'
+apply plugin: 'flyway'
+apply plugin: 'groovy'
+apply plugin: 'java'
+//apply plugin: 'base'
+apply plugin: "war"
+apply plugin: "spring-boot"
+
+sourceCompatibility = 1.8
+
+/*configurations {
+    excludeModules.each {name ->
+        runtime.exclude module: name
+    }
+
+    runtime.exclude group: 'org.aspectj'
+}*/
+
+repositories {
+    mavenCentral()
+    //jcenter()
+    //maven { url "https://oss.sonatype.org/content/repositories/snapshots/"}
+    //maven { url "https://repository.jboss.org/nexus/content/repositories/releases" }
+    //maven { url "https://maven.repository.redhat.com/ga/" }
+}
+
+dependencies {
+
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf") {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+
+    compile(
+            // Spring Boot
+            ["org.springframework.boot:spring-boot-starter-undertow:$springBootVersion"],
+            ["org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion"],
+            ["org.springframework.boot:spring-boot-starter-batch:$springBootVersion"],
+            ["org.springframework:spring-context-support:$springVersion"],
+            ["org.springframework.integration:spring-integration-core:$springVersion"],
+            ["org.springframework.integration:spring-integration-ftp:$springVersion"],
+            ["org.springframework.integration:spring-integration-sftp:$springVersion"],
+            ["org.springframework.integration:spring-integration-java-dsl:1.1.2.RELEASE"],
+            //["org.springframework:spring-aop:$springVersion"],
+            //["org.springframework:spring-jdbc:$springVersion"],
+
+            // Spring
+            //["org.springframework:spring-tx:$springVersion"],
+            //["org.springframework.boot:spring-boot-devtools"],
+            //["com.h2database:h2"],
+            // Google
+            ["com.google.guava:guava:$guavaVersion"],
+
+
+            // Mail
+            ["javax.mail:mail:1.4.7"],
+
+            // Groovy
+            ["org.codehaus.groovy:groovy-all:$groovyVersion"],
+
+            // Database
+            ["mysql:mysql-connector-java:$mysqlVersion"],
+
+            // Logging
+            ["org.apache.logging.log4j:log4j-api:2.5"],
+            ["org.apache.logging.log4j:log4j-core:2.5"],
+            ["com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.5.0"]
+    )
+
+    providedCompile(
+            ["javax.servlet:javax.servlet-api:$servletVersion"]
+    )
+
+    compile fileTree(dir: 'lib', include: ['*.jar'])
+
+    testCompile(
+            ["junit:junit:$junitVersion"],
+            ["org.springframework.boot:spring-boot-starter-test:$springBootVersion"],
+            ["org.hamcrest:hamcrest-all:1.3"],
+            ["org.mockito:mockito-core:1.9.5"]
+            //["org.springframework:spring-test:$springVersion"],
+            //["org.spockframework:spock-core:1.0-groovy-2.4"],
+            //["org.jboss.arquillian:arquillian-junit:$arquillianVersion"],
+            //["org.jvnet.mock-javamail:mock-javamail:1.9"]
+    )
+}
+
+
+gitflow {
+    // Use a different Git repository
+    repositoryRoot 'foo/bar' // defaults to project.projectDir
+
+    // Pre-release identifiers based on Gitflow branches
+    preReleaseIds {
+        release 'foo'      // defaults to ''
+        develop 'foo'      // defaults to 'dev'
+        preRelease 'foo'   // defaults to 'pre'
+        detachedHead 'foo' // defaults to 'detached'
+
+        // The following ones are used as prefixes
+        feature 'foo' // defaults to 'feature'
+        hotfix 'foo'  // defaults to 'fix'
+        support 'foo' // defaults to 'support'
+    }
+
+    // Build metadata identifiers that are used as static text
+    buildMetadataIds {
+        sha 'foo'   // Defaults to 'sha'
+        dirty 'foo' // Defaults to 'dirty'
+    }
+}
+
+/*flyway {
+    url = 'jdbc:mysql://localhost:3306'
+    user = 'root'
+    password = 'Z00xMu$1c'
+    schemas = ['ims']
+}*/

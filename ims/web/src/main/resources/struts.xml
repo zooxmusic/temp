@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <constant name="struts.objectFactory" value="spring" />
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.mapper.class" value="rest" />
+
+    <package name="default" extends="struts-default">
+        <interceptors>
+            <interceptor name="loginInterceptor" class="com.aeg.ims.interceptor.LoginInterceptor" />
+
+            <interceptor-stack name="defaultLoginStack">
+                <interceptor-ref name="servlet-config" />
+                <interceptor-ref name="params" />
+                <interceptor-ref name="login" />
+                <interceptor-ref name="prepare" />
+                <interceptor-ref name="chain" />
+                <interceptor-ref name="model-driven" />
+                <interceptor-ref name="fileUpload" />
+                <interceptor-ref name="static-params" />
+                <interceptor-ref name="params" />
+                <interceptor-ref name="conversionError" />
+                <interceptor-ref name="validation" />
+                <interceptor-ref name="workflow" />
+            </interceptor-stack>
+
+            <interceptor-stack name="defaultInsecureStack">
+                <interceptor-ref name="servlet-config" />
+                <interceptor-ref name="params" />
+                <interceptor-ref name="prepare" />
+                <interceptor-ref name="chain" />
+                <interceptor-ref name="model-driven" />
+                <interceptor-ref name="fileUpload" />
+                <interceptor-ref name="static-params" />
+                <interceptor-ref name="params" />
+                <interceptor-ref name="conversionError" />
+                <interceptor-ref name="validation" />
+                <interceptor-ref name="workflow" />
+            </interceptor-stack>
+        </interceptors>
+
+        <default-interceptor-ref name="defaultLoginStack" />
+
+        <default-action-ref name="index" />
+
+        <global-results>
+            <result name="login">/WEB-INF/pages/Login.jsp</result>
+            <result name="login-success">/WEB-INF/pages/Index.jsp</result>
+        </global-results>
+
+        <action name="index">
+            <result name="input">/WEB-INF/pages/Index.jsp</result>
+            <result name="success">/WEB-INF/pages/Index.jsp</result>
+        </action>
+
+    </package>
+    <package name="someSubPackage" extends="my-default" namespace="/other">
+        <action name="somethingElse" class="somethingElseAction">
+            <result name="input">/WEB-INF/pages/SomethingElse.jsp</result>
+            <result name="success">/WEB-INF/pages/SomethingElse.jsp</result>
+        </action>
+    </package>
+</struts>

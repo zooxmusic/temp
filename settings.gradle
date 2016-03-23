@@ -1,0 +1,3 @@
+include "common", "domain", "util", "ims", "ims:api", "ims:transfer", "ims:web"
+rootProject.name = 'aeg'
+
