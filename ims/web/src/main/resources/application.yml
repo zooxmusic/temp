@@ -1,0 +1,33 @@
+
+
+
+spring:
+  jpa:
+    properties:
+
+    hibernate:
+      ddl-auto: validate
+
+
+  #datasource:
+   # driverClassName: oracle.jdbc.driver.OracleDriver
+    #url: jdbc:oracle:thin:@10.50.100.210:1521:imsdev
+   # username: bszucs
+   # password: bszucs123
+    #jndi-name:java:comp/env/jdbc/my_database
+    # Connection Pool Settings
+  #  testOnBorrow: true
+  #  validationQuery: select 1 from DUAL
+  #  validationInterval: 30000
+  #  maxActive: 100
+  ##  maxIdle: 100
+ #   minIdle: 10
+ #   initialSize: 0
+ #   maxWait: 30000
+ #   testOnReturn: false
+ #   testWhileIdle: false
+ #   timeBetweenEvictionRunsMillis: 5000
+ #   minEvictableIdleTimeMillis: 60000
+ #   removeAbandoned: true
+ #   removeAbandonedTimeout: 60
+ #   logAbandoned: true
