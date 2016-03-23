@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":ims:web" external.linked.project.path="$MODULE_DIR$/../ims/web" external.root.project.path="$MODULE_DIR$/.." external.system.id="GRADLE" external.system.module.group="com.aeg.ims" external.system.module.version="1.0-SNAPSHOT" type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="web" name="Web Gradle : web-1.0-SNAPSHOT.war">
+      <configuration>
+        <descriptors>
+          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/../ims/web/src/main/webapp/WEB-INF/web.xml" />
+        </descriptors>
+        <webroots>
+          <root url="file://$MODULE_DIR$/../ims/web/src/main/webapp" relative="/" />
+        </webroots>
+        <sourceRoots>
+          <root url="file://$MODULE_DIR$/../ims/web/src/main/java" />
+          <root url="file://$MODULE_DIR$/../ims/web/src/main/resources" />
+        </sourceRoots>
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="false">
+    <output url="file://$MODULE_DIR$/../ims/web/build/classes/main" />
+    <output-test url="file://$MODULE_DIR$/../ims/web/build/classes/test" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../ims/web">
+      <sourceFolder url="file://$MODULE_DIR$/../ims/web/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../ims/web/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../ims/web/src/main/resources" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../ims/web/src/test/resources" type="java-test-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/../ims/web/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/../ims/web/build" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="api" />
+    <orderEntry type="module" module-name="common" />
+    <orderEntry type="module" module-name="domain" />
+  </component>
+</module>
