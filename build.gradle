@@ -1,3 +1,13 @@
+
+import groovy.json.JsonBuilder;
+import groovy.json.JsonSlurper;
+import groovy.text.SimpleTemplateEngine;
+
+ext {
+    group "com.aeg"
+    version '1.0-SNAPSHOT'
+}
+
 buildscript {
     repositories {
         mavenCentral()
@@ -5,65 +15,343 @@ buildscript {
 
     dependencies {
         classpath(
-                ["org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"],
-                ["org.flywaydb:flyway-gradle-plugin:4.0"],
-                ["com.prezi.pride:gradle-pride-plugin:0.11"]
+               // ["org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"],
+               // ["org.codehaus.groovy:groovy-all:$groovyVersion"]
+                //["mysql:mysql-connector-java:$mysqlVersion"],
+                //["org.flywaydb:flyway-gradle-plugin:3.1"],
+                //["com.github.amkay:gradle-gitflow:0.2.0"]
         )
     }
 }
 
-allprojects {
+task buildItForReal {
+    def builder = JsonGroovyBuilder()
+    def checkStatus = folder(name: "CHECK_STATUS");
 
-}
-
-subprojects {
-    apply plugin: "java"
-}
-
-
-def excludeModules = ["spring-security-acl", "jsr250-api", "ehcache", "spring-jdbc", "spring-tx"]
-
-
-group "com.aeg"
-version "1.0-SNAPSHOT"
-
-apply plugin:  "pride"
-//apply plugin: "com.github.amkay.gitflow"
-apply plugin: "org.flywaydb.flyway"
-apply plugin: "groovy"
-apply plugin: "java"
-
-apply plugin: "spring-boot"
-
-sourceCompatibility = 1.8
-
-/*configurations {
-    excludeModules.each {name ->
-        runtime.exclude module: name
+    def json = builder.dir {
+        folder(name: "IMSTransferFiles") {
+            folder(name: "Inbound") {
+                folder(name: "AEG") {}
+                folder(name: "CRH") {}
+                folder(name: "ICF") {}
+                folder(name: "TRC") {}
+            }
+            folder(name: "Outbound") {
+                folder(name: "AEG") {
+                    checkStatus
+                }
+                folder(name: "CRH") {}
+                folder(name: "ICF") {}
+                folder(name: "TRC") {}
+            }
+        }
     }
 
-    runtime.exclude group: "org.aspectj"
-}*/
+}
+
+
+/*task buildTemplate {
+
+    def builder = new groovy.json.JsonBuilder()
+    def root = builder.imsTransfer {
+        Inbound {
+            AEG {}
+            CR {}
+            ICF {}
+            TRC {}
+        }
+        outbound {
+            AEG { CHECK_STATUS{}}
+            CR {CHECK_STATUS{}}
+            ICF {CHECK_STATUS{}}
+            TRC {CHECK_STATUS{}}
+        }
+    }
+
+    println builder.toPrettyString();
+}
+
+task cre {
+
+    def model = [partners:["AEG","CRH","TRC","ICH"]];
+
+
+    def template = '''\
+       "IMSTransfer": {
+           "Inbound":{ ${partners} },
+            "Outbound":{}
+        }
+    '''.stripMargin()
+
+    def engine = new SimpleTemplateEngine()
+    println engine.createTemplate(template).make(model);
+    //println new JsonSlurper().parseText(template).toString();
+}
+
+/*
+    task doi {
+
+        def model = [:]
+
+        def buildTemplate = '''\
+            |import hudson.cli.CLI
+            |
+            |buildscript {
+            |    repositories {
+            |        maven {
+            |            url 'http://repo.jenkins-ci.org/public'
+            |        }
+            |        mavenCentral()
+            |    }
+            |    dependencies {
+            |        classpath "org.jenkins-ci.main:cli:\\${jenkinsVersion}"
+            |    }
+            |}
+            |
+            |apply plugin: 'groovy'
+            |apply plugin: 'idea'
+            |apply plugin: 'eclipse'
+            |
+            |repositories {
+            |    maven {
+            |        url 'http://repo.jenkins-ci.org/public'
+            |    }
+            |    mavenCentral()
+            |}
+            |
+            |sourceSets {
+            |    main {
+            |        groovy {
+            |            srcDirs = ['src/script', 'src/postbuild']
+            |        }
+            |    }
+            |}
+            |
+            |dependencies {
+            |    compile "org.jenkins-ci.main:jenkins-war:\\${jenkinsVersion}:war-for-test"
+            |}
+            |
+            |def cli = { script ->
+            |    def c = new CLI(new URL(jenkinsUrl))
+            |    try {
+            |        c.execute(['groovy', script.absolutePath], System.in, System.out, System.out)
+            |    } finally {
+            |        c?.close()
+            |    }
+            |}
+            |
+            |def scriptFiles = file('src/script').listFiles(({ it.file && it.name.endsWith('.groovy') } as FileFilter))
+            |
+            |task run << {
+            |    if (scriptFiles) {
+            |        println 'Choose script:'
+            |        scriptFiles.eachWithIndex { f, i ->
+            |            println "\\${i}: \\${f.name}"
+            |        }
+            |        def scriptNo = System.console().readLine('\\\\n> Choose a number: ')
+            |        if (scriptNo.isNumber()) {
+            |            cli scriptFiles[scriptNo.toInteger()]
+            |        }
+            |    } else {
+            |        println 'No scripts.'
+            |    }
+            |}
+            |
+            |scriptFiles.each { file ->
+            |    def taskName = file.name - '.groovy'
+            |    task "run-\\$taskName" << {
+            |        cli file
+            |    }
+            |}
+            |'''.stripMargin()
+
+        def propertiesTemplate = '''\
+            |jenkinsVersion=12
+            |jenkinsUrl=jenkinsUrl
+            |'''.stripMargin()
+
+        def engine = new SimpleTemplateEngine()
+       println engine.createTemplate(buildTemplate).make(model)
+        println engine.createTemplate(propertiesTemplate).make(model)
+
+
+    }
+
+
+task doit() {
+
+    def text = 'Dear "$firstname $lastname",\nSo nice to meet you in <% print city %>.\nSee you in ${month},\n${signed}'
+
+    def binding = ["firstname":"Sam", "lastname":"Pullara", "city":"San Francisco", "month":"December", "signed":"Groovy-Dev"]
+
+    def engine = new groovy.text.SimpleTemplateEngine()
+    def template = engine.createTemplate(text).make(binding)
+    println(template.toString())
+
+    /*def values = ["inChildren" : "YOU SUCK ASS"];
+
+    def structure = """{
+        "Inbound": {
+            "$inChildren": {
+                "firstName": "Guillame",
+                "lastName": "Laforge",
+                "address": {
+                    "city": "Paris",
+                    "country": "France",
+                    "zip": 12345
+                },
+                "married": true,
+                "conferences": [
+                        "JavaOne",
+                        "Gr8conf"
+                ]
+            }
+        }
+    }"""
+
+    SimpleTemplateEngine engine = new SimpleTemplateEngine();
+    def json = engine.createTemplate(structure).make(values).toString();
+    println(new JsonBuilder(json).toPrettyString())
+
+
+
+
+
+   /* def transferDirectory = """{
+        "IMSTransfer": {
+            "person": {
+                "firstName": "Guillame",
+                "lastName": "Laforge",
+                "address": {
+                    "city": "Paris",
+                    "country": "France",
+                    "zip": 12345
+                },
+                "married": true,
+                "conferences": [
+                        "JavaOne",
+                        "Gr8conf"
+                ]
+            }
+        }
+    }"""
+
+
+    def builder = new groovy.json.JsonBuilder(structure)
+    builder.
+
+    def root = builder.people {
+        person {
+            firstName 'Guillame'
+            lastName 'Laforge'
+            // Named arguments are valid values for objects too
+            address(
+                    city: 'Paris',
+                    country: 'France',
+                    zip: 12345,
+            )
+            married true
+            // a list of values
+            conferences 'JavaOne', 'Gr8conf'
+        }
+    }
+    def root2 = builder.people {
+        person {
+            firstName 'Brian'
+            lastName 'Szucs'
+            // Named arguments are valid values for objects too
+            address(
+                    city: 'Princeton',
+                    country: 'US',
+                    zip: 08540,
+            )
+            married false
+            // a list of values
+            conferences 'AssOne', 'FU'
+        }
+    }
+    builder.root
+
+    println(builder.toPrettyString());*/
+//}
+
+
+//apply plugin: 'flyway'
+//apply plugin: 'com.github.amkay.gitflow'
+apply plugin: 'groovy'
 
 repositories {
-    mavenCentral()
-    //jcenter()
-    //maven { url "https://oss.sonatype.org/content/repositories/snapshots/"}
-    //maven { url "https://repository.jboss.org/nexus/content/repositories/releases" }
-    //maven { url "https://maven.repository.redhat.com/ga/" }
 }
 
 dependencies {
+    ['net.sf.json-lib:json-lib:2.4']
 
-    compile("org.springframework.boot:spring-boot-starter-thymeleaf") {
-        exclude module: "spring-boot-starter-tomcat"
+}
+
+configurations {
+    integrationTestCompile.extendsFrom testCompile
+    integrationTestRuntime.extendsFrom testRuntime
+}
+
+sourceSets {
+    integrationTest {
+        java {
+            compileClasspath += main.output + test.output
+            runtimeClasspath += main.output + test.output
+            srcDir file('src/integration-test/java')
+        }
+        resources.srcDir file('src/integration-test/resources')
+    }
+}
+
+allprojects {
+    apply plugin: "java"
+
+    repositories {
+        mavenCentral()
+        jcenter()
     }
 
-    compile(
+
+    dependencies {
+
+        //compile fileTree(dir: 'lib', include: ['*.jar'])
+
+        compile(
+                ["org.projectlombok:lombok:$lombokVersion"],
+                ["org.springframework.boot:spring-boot-starter-log4j2:$springBootVersion"]
+        )
+
+        testCompile(
+                ["junit:junit:$junitVersion"],
+                ["org.hamcrest:hamcrest-all:1.3"],
+                ["org.mockito:mockito-core:1.9.5"],
+                //["org.spockframework:spock-core:1.0-groovy-2.4"],
+                ["org.jboss.arquillian:arquillian-junit:$arquillianVersion"],
+                ["org.jvnet.mock-javamail:mock-javamail:1.9"]
+        )
+    }
+}
+
+subprojects {
+
+
+
+
+}
+
+
+
+
+
+/*
+
+
+
             // Spring Boot
             ["org.springframework.boot:spring-boot-starter-undertow:$springBootVersion"],
             ["org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion"],
-            ["org.springframework.boot:spring-boot-starter-batch:$springBootVersion"],
+
             ["org.springframework:spring-context-support:$springVersion"],
             ["org.springframework.integration:spring-integration-core:$springVersion"],
             ["org.springframework.integration:spring-integration-ftp:$springVersion"],
@@ -88,56 +376,56 @@ dependencies {
 
             // Database
             ["mysql:mysql-connector-java:$mysqlVersion"],
-            ["gradle.plugin.com.boxfuse.client:flyway-release:4.0"],
+
             // Logging
             ["org.apache.logging.log4j:log4j-api:2.5"],
             ["org.apache.logging.log4j:log4j-core:2.5"],
             ["com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.5.0"]
-    )
 
 
-    compile fileTree(dir: "lib", include: ["*.jar"])
+*/
 
-    testCompile(
-            ["junit:junit:$junitVersion"],
-            ["org.springframework.boot:spring-boot-starter-test:$springBootVersion"],
-            ["org.hamcrest:hamcrest-all:1.3"],
-            ["org.mockito:mockito-core:1.9.5"]
-            //["org.springframework:spring-test:$springVersion"],
-            //["org.spockframework:spock-core:1.0-groovy-2.4"],
-            //["org.jboss.arquillian:arquillian-junit:$arquillianVersion"],
-            //["org.jvnet.mock-javamail:mock-javamail:1.9"]
-    )
-}
+
+
+
+
 
 
 /*gitflow {
     // Use a different Git repository
-    repositoryRoot "foo/bar" // defaults to project.projectDir
+    repositoryRoot 'foo/bar' // defaults to project.projectDir
 
     // Pre-release identifiers based on Gitflow branches
     preReleaseIds {
-        release "foo"      // defaults to ""
-        develop "foo"      // defaults to "dev"
-        preRelease "foo"   // defaults to "pre"
-        detachedHead "foo" // defaults to "detached"
+        release 'foo'      // defaults to ''
+        develop 'foo'      // defaults to 'dev'
+        preRelease 'foo'   // defaults to 'pre'
+        detachedHead 'foo' // defaults to 'detached'
 
         // The following ones are used as prefixes
-        feature "foo" // defaults to "feature"
-        hotfix "foo"  // defaults to "fix"
-        support "foo" // defaults to "support"
+        feature 'foo' // defaults to 'feature'
+        hotfix 'foo'  // defaults to 'fix'
+        support 'foo' // defaults to 'support'
     }
 
     // Build metadata identifiers that are used as static text
     buildMetadataIds {
-        sha "foo"   // Defaults to "sha"
-        dirty "foo" // Defaults to "dirty"
+        sha 'foo'   // Defaults to 'sha'
+        dirty 'foo' // Defaults to 'dirty'
     }
-}*/
+}
 
 /*flyway {
-    url = "jdbc:mysql://localhost:3306"
-    user = "root"
-    password = "Z00xMu$1c"
-    schemas = ["ims"]
+    url = 'jdbc:mysql://localhost:3306'
+    user = 'root'
+    password = 'Z00xMu$1c'
+    schemas = ['ims']
+}*/
+
+/*configurations {
+    excludeModules.each {name ->
+        runtime.exclude module: name
+    }
+
+    runtime.exclude group: 'org.aspectj'
 }*/

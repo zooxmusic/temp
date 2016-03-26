@@ -1,0 +1,10 @@
+
+
+dependencies {
+
+    compile(
+            ["org.springframework.boot:spring-boot-starter:$springBootVersion"],
+            ["org.yaml:snakeyaml:1.17"],
+            ["commons-lang:commons-lang:2.6"]
+    )
+}

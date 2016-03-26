@@ -1,0 +1,13 @@
+partner:
+    name: CleaResult
+    code: CRH
+    protocol: SFTP
+    url: sftp://nisha.menon:CT2ws0p%3B1qa6yh@vault.clearesult.com/
+    port: 22
+    username: nisha.menon
+    password: CT2ws0p;1qa6yh
+    directories:
+        inbound:
+            new: HPwES - Files For Tesging
+
+        outbound:

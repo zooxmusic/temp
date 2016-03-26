@@ -1,3 +1,7 @@
-include "common", "domain", "util", "ims", "ims:api", "ims:transfer", "ims:web"
-rootProject.name = 'aeg'
+include "shared", "domain", "util","ims-api", "ims-transfer", "ims-web"
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+
 

@@ -1,2 +1,11 @@
-group "com.aeg"
-version "1.0-SNAPSHOT"
+
+dependencies {
+    compile(
+        ["org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion"],
+        ["org.springframework:spring-context-support:$springVersion"],
+
+        // Database
+        ["mysql:mysql-connector-java:$mysqlVersion"]
+
+    )
+}

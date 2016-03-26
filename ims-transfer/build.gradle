@@ -1,0 +1,43 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath(
+                ["org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"]
+        )
+    }
+}
+apply plugin: "spring-boot"
+
+repositories {
+
+}
+
+dependencies {
+
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf") {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+
+    compile (
+            project(":domain"),
+            project(":shared"),
+            ["org.quartz-scheduler:quartz:$quartzVersion"],
+            ["org.liquibase:liquibase-core:3.4.2"],
+            ["org.springframework.boot:spring-boot-starter-undertow:$springBootVersion"],
+            ["org.springframework.boot:spring-boot-starter-data-jdbc:$springBootVersion"],
+            ["org.springframework.boot:spring-boot-starter-batch:$springBootVersion"],
+            ["org.springframework.integration:spring-integration-ftp:$springVersion"],
+            ["org.springframework.integration:spring-integration-sftp:$springVersion"],
+            ["org.springframework.integration:spring-integration-java-dsl:1.1.2.RELEASE"],
+            ["org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion"],
+            ["com.h2database:h2"]
+    )
+
+    testCompile(
+            ["org.springframework.boot:spring-boot-starter-test:$springBootVersion"],
+            ["org.testng:testng:6.1.1"]
+    )
+}

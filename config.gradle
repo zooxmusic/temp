@@ -1,0 +1,106 @@
+ext {
+
+    def plugin = {
+        java : "java"
+        springBoot : "spring-boot"
+        //flyway= "org.flywaydb.flyway",
+        pride : "pride"
+        groovy : "groovy"
+        base : "base"
+        war : "war"
+        gitflow : "com.github.amkay.gitflow"
+        bootGradle : "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+        flywayGradle : "org.flywaydb:flyway-gradle-plugin:$flywayVersion"
+        prideGradle : "com.prezi.pride:gradle-pride-plugin:$prideVersion"
+    }
+
+    def module = {
+        bootStarterTomcat =
+        ["spring-boot-starter-tomcat"]
+    }
+
+    def lib = {
+        spring {
+            // Spring
+            springContextSupport= ["org.springframework:spring-context-support:$springVersion"]
+            springAop = ["org.springframework:spring-aop:$springVersion"]
+            springJdbc = ["org.springframework:spring-jdbc:$springVersion"]
+            springTx = ["org.springframework:spring-tx:$springVersion"]
+
+            integration {
+
+                // Spring Integration
+                springIntegraationCore = ["org.springframework.integration:spring-integration-core:$springVersion"]
+                springIntegrationFtp = ["org.springframework.integration:spring-integration-ftp:$springVersion"]
+                springIntegrationSftp = ["org.springframework.integration:spring-integration-sftp:$springVersion"]
+                springIntegrationJavaDsl =["org.springframework.integration:spring-integration-java-dsl:1.1.2.RELEASE"]
+            }
+        }
+
+
+                boot {
+                    // Spring Boot
+                    bootDevtools = ["org.springframework.boot:spring-boot-devtools:$springBootVersion"]
+
+                    starter {
+                        // Spring Boot Starter
+                        bootStarterTest =  ["org.springframework.boot:spring-boot-starter-test:$springBootVersion"]
+                        bootStarterThymeleaf = ["org.springframework.boot:spring-boot-starter-thymeleaf:$springBootVersion"]
+                        bootStarterUndertow = ["org.springframework.boot:spring-boot-starter-undertow:$springBootVersion"]
+                        bootStarterDataJpa = ["org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion"]
+                        bootStarterBatch = ["org.springframework.boot:spring-boot-starter-batch:$springBootVersion"]
+                        bootStarterLog4j2 = ["org.springframework.boot:spring-boot-starter-log4j2:$springBootVersion"]
+                    }
+                }
+
+
+
+
+
+
+
+
+            // Servlet 3.1
+            servlet31 = ["javax.servlet:javax.servlet-api:$servletVersion"]
+
+            // Mail
+            javaMail= ["javax.mail:mail:$javaMailVersion"]
+
+            // Groovy
+            groovyAll = ["org.codehaus.groovy:groovy-all:$groovyVersion"]
+
+            // Database
+            mysql = ["mysql:mysql-connector-java:$mysqlVersion"]
+            h2db = ["com.h2database:h2"]
+
+            // Database Tools
+            flywayCore = ["org.flywaydb:flyway-core:$flywayVersion"]
+
+            // Google
+            guava = ["com.google.guava:guava:$guavaVersion"]
+
+            jacksonYml = ["com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonYmlVersion"]
+
+            lombok = ["org.projectlombok:lombok:$lombokVersion"]
+
+        test {
+            // Testing
+            junit = ["junit:junit:$junitVersion"]
+            hamcrestAll =
+            ["org.hamcrest:hamcrest-all:$hamcrestVersion"]
+            mockitoCore =
+            ["org.mockito:mockito-core:$mockitoVersion"]
+            spockCore =
+            ["org.spockframework:spock-core:$spockVersion"]
+            spockSpring =
+            ["org.spockframework:spock-spring:$spockVersion"]
+            springTest =
+            ["org.springframework:spring-test:$springVersion"]
+            arquillianJunit =
+            ["org.jboss.arquillian:arquillian-junit:$arquillianVersion"]
+            mockMail =
+            ["org.jvnet.mock-javamail:mock-javamail:$mockMailVersion"]
+        }
+
+    }
+}
