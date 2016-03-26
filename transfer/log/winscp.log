@@ -1,0 +1,194 @@
+. 2016-03-09 14:05:02.189 --------------------------------------------------------------------------
+. 2016-03-09 14:05:02.189 WinSCP Version 5.7.7 (Build 6257) (OS 6.1.7601 Service Pack 1 - Windows 7 Enterprise)
+. 2016-03-09 14:05:02.189 Configuration: HKCU\Software\Martin Prikryl\WinSCP 2\
+. 2016-03-09 14:05:02.189 Log level: Normal
+. 2016-03-09 14:05:02.189 Local account: AMERESCO\bszucs
+. 2016-03-09 14:05:02.189 Working directory: C:\Development\Projects\Java\IMS\transfer
+. 2016-03-09 14:05:02.189 Process ID: 7756
+. 2016-03-09 14:05:02.189 Command-line: "C:\Program Files (x86)\WinSCP\WinSCP.exe" /console=577 /consoleinstance=_8576_565 "/log=log/winscp.log" "/script=bin/transfer.bat" 
+. 2016-03-09 14:05:02.189 Time zone: Current: GMT-5, Standard: GMT-5 (Eastern Standard Time), DST: GMT-4 (Eastern Daylight Time), DST Start: 3/13/2016, DST End: 11/6/2016
+. 2016-03-09 14:05:02.189 Login time: Wednesday, March 09, 2016 2:05:02 PM
+. 2016-03-09 14:05:02.189 --------------------------------------------------------------------------
+. 2016-03-09 14:05:02.189 Script: Retrospectively logging previous script records:
+> 2016-03-09 14:05:02.189 Script: open sftp://NJCEP_test:***@transfer.icfwebservices.com/
+. 2016-03-09 14:05:02.189 --------------------------------------------------------------------------
+. 2016-03-09 14:05:02.189 Session name: NJCEP_test@transfer.icfwebservices.com (Ad-Hoc site)
+. 2016-03-09 14:05:02.189 Host name: transfer.icfwebservices.com (Port: 22)
+. 2016-03-09 14:05:02.189 User name: NJCEP_test (Password: Yes, Key file: No)
+. 2016-03-09 14:05:02.189 Tunnel: No
+. 2016-03-09 14:05:02.189 Transfer Protocol: SFTP
+. 2016-03-09 14:05:02.189 Ping type: -, Ping interval: 30 sec; Timeout: 15 sec
+. 2016-03-09 14:05:02.189 Disable Nagle: No
+. 2016-03-09 14:05:02.189 Proxy: none
+. 2016-03-09 14:05:02.189 Send buffer: 262144
+. 2016-03-09 14:05:02.189 SSH protocol version: 2; Compression: No
+. 2016-03-09 14:05:02.189 Bypass authentication: No
+. 2016-03-09 14:05:02.189 Try agent: Yes; Agent forwarding: No; TIS/CryptoCard: No; KI: Yes; GSSAPI: No
+. 2016-03-09 14:05:02.189 Ciphers: aes,blowfish,3des,WARN,arcfour,des; Ssh2DES: No
+. 2016-03-09 14:05:02.190 KEX: dh-gex-sha1,dh-group14-sha1,dh-group1-sha1,rsa,WARN
+. 2016-03-09 14:05:02.190 SSH Bugs: A,A,A,A,A,A,A,A,A,A,A,A
+. 2016-03-09 14:05:02.190 Simple channel: Yes
+. 2016-03-09 14:05:02.190 Return code variable: Autodetect; Lookup user groups: A
+. 2016-03-09 14:05:02.190 Shell: default
+. 2016-03-09 14:05:02.190 EOL: 0, UTF: 2
+. 2016-03-09 14:05:02.190 Clear aliases: Yes, Unset nat.vars: Yes, Resolve symlinks: Yes
+. 2016-03-09 14:05:02.190 LS: ls -la, Ign LS warn: Yes, Scp1 Comp: No
+. 2016-03-09 14:05:02.190 SFTP Bugs: A,A
+. 2016-03-09 14:05:02.190 SFTP Server: default
+. 2016-03-09 14:05:02.190 Local directory: default, Remote directory: home, Update: Yes, Cache: Yes
+. 2016-03-09 14:05:02.190 Cache directory changes: Yes, Permanent: Yes
+. 2016-03-09 14:05:02.190 DST mode: 1
+. 2016-03-09 14:05:02.190 --------------------------------------------------------------------------
+. 2016-03-09 14:05:02.191 Looking up host "transfer.icfwebservices.com"
+. 2016-03-09 14:05:02.210 Connecting to 199.223.23.10 port 22
+. 2016-03-09 14:05:02.461 Server version: SSH-2.0-2.0
+. 2016-03-09 14:05:02.461 Using SSH protocol version 2
+. 2016-03-09 14:05:02.461 We claim version: SSH-2.0-WinSCP_release_5.7.7
+. 2016-03-09 14:05:02.526 Using Diffie-Hellman with standard group "group14"
+. 2016-03-09 14:05:02.526 Doing Diffie-Hellman key exchange with hash SHA-1
+. 2016-03-09 14:05:02.952 Verifying host key rsa2 0x10001,0xc287da9d72fd62f5 8ea70f0a6ca4b696 d4ea2c76baed3a5d 2deee8a87f6fd062 cd114e64f50d5473 d03d1237078d8ed0 7fe74ebda4568d32 d844879f7580dae7 8a9c72d85036673e f1e5fbf4bff01b4e 3993ba32b5e06603 06f3104c0e7c8c67 f5356467d3e0a426 f842a98e1eca5918 817767e18e508064 18a04bcdf4feb375  with fingerprint ssh-rsa 1024 e4:dd:11:2e:82:34:ab:62:59:1c:c8:62:1d:4b:48:99
+. 2016-03-09 14:05:02.952 Host key matches cached key
+. 2016-03-09 14:05:02.953 Host key fingerprint is:
+. 2016-03-09 14:05:02.953 ssh-rsa 1024 e4:dd:11:2e:82:34:ab:62:59:1c:c8:62:1d:4b:48:99
+. 2016-03-09 14:05:02.953 Initialised AES-256 SDCTR client->server encryption
+. 2016-03-09 14:05:02.953 Initialised HMAC-SHA-256 client->server MAC algorithm
+. 2016-03-09 14:05:03.017 Initialised AES-256 SDCTR server->client encryption
+. 2016-03-09 14:05:03.017 Initialised HMAC-SHA-256 server->client MAC algorithm
+! 2016-03-09 14:05:03.086 Using username "NJCEP_test".
+. 2016-03-09 14:05:03.156 Prompt (password, "SSH password", <no instructions>, "&Password: ")
+. 2016-03-09 14:05:03.156 Using stored password.
+. 2016-03-09 14:05:03.157 Sent password
+. 2016-03-09 14:05:03.308 Access granted
+. 2016-03-09 14:05:03.308 Opening session as main channel
+. 2016-03-09 14:05:03.375 Opened main channel
+. 2016-03-09 14:05:03.716 Started a shell/command
+. 2016-03-09 14:05:03.717 --------------------------------------------------------------------------
+. 2016-03-09 14:05:03.717 Using SFTP protocol.
+. 2016-03-09 14:05:03.717 Doing startup conversation with host.
+> 2016-03-09 14:05:03.718 Type: SSH_FXP_INIT, Size: 5, Number: -1
+< 2016-03-09 14:05:03.784 Type: SSH_FXP_VERSION, Size: 72, Number: -1
+. 2016-03-09 14:05:03.785 SFTP version 6 negotiated.
+. 2016-03-09 14:05:03.785 Server requests EOL sequence "\r\n".
+. 2016-03-09 14:05:03.785 Server support information (supported2):
+. 2016-03-09 14:05:03.785   Attribute mask: 33D, Attribute bits: 17, Open flags: 7
+. 2016-03-09 14:05:03.785   Access mask: 3, Open block vector: 0, Block vector: 0, Max read size: 1048576
+. 2016-03-09 14:05:03.785   Attribute extensions (0)
+. 2016-03-09 14:05:03.785   Extensions (0)
+. 2016-03-09 14:05:03.785 We will use UTF-8 strings as it is mandatory with SFTP version 4 and newer
+. 2016-03-09 14:05:03.785 Getting current directory name.
+. 2016-03-09 14:05:03.785 Getting real path for '.'
+> 2016-03-09 14:05:03.785 Type: SSH_FXP_REALPATH, Size: 11, Number: 16
+< 2016-03-09 14:05:03.855 Type: SSH_FXP_NAME, Size: 92, Number: 16
+. 2016-03-09 14:05:03.855 Real path is '/'
+. 2016-03-09 14:05:03.855 Startup conversation with host finished.
+< 2016-03-09 14:05:03.856 Script: Active session: [1] NJCEP_test@transfer.icfwebservices.com
+> 2016-03-09 14:05:03.858 Script: cd FromICF
+. 2016-03-09 14:05:03.858 Cached directory change via "FromICF" to "/FromICF".
+. 2016-03-09 14:05:03.858 Getting current directory name.
+< 2016-03-09 14:05:03.858 Script: /FromICF
+> 2016-03-09 14:05:03.859 Script: lcd config/partners/ICF/Inbound
+< 2016-03-09 14:05:03.860 Script: Error changing directory to 'config/partners/ICF/Inbound'.
+< 2016-03-09 14:05:03.860 Script: System Error.  Code: 2.
+< 2016-03-09 14:05:03.860 The system cannot find the file specified
+. 2016-03-09 14:05:03.861 Script: Failed
+. 2016-03-09 14:05:03.861 Script: Exit code: 1
+. 2016-03-09 14:05:03.861 Closing connection.
+. 2016-03-09 14:05:03.861 Sending special code: 12
+. 2016-03-09 14:05:03.862 Sent EOF message
+. 2016-03-09 14:06:59.192 --------------------------------------------------------------------------
+. 2016-03-09 14:06:59.193 WinSCP Version 5.7.7 (Build 6257) (OS 6.1.7601 Service Pack 1 - Windows 7 Enterprise)
+. 2016-03-09 14:06:59.193 Configuration: HKCU\Software\Martin Prikryl\WinSCP 2\
+. 2016-03-09 14:06:59.193 Log level: Normal
+. 2016-03-09 14:06:59.193 Local account: AMERESCO\bszucs
+. 2016-03-09 14:06:59.193 Working directory: C:\Development\Projects\Java\IMS\transfer
+. 2016-03-09 14:06:59.193 Process ID: 6588
+. 2016-03-09 14:06:59.193 Command-line: "C:\Program Files (x86)\WinSCP\WinSCP.exe" /console=577 /consoleinstance=_8376_605 "/log=log/winscp.log" "/script=bin/process.bat" 
+. 2016-03-09 14:06:59.193 Time zone: Current: GMT-5, Standard: GMT-5 (Eastern Standard Time), DST: GMT-4 (Eastern Daylight Time), DST Start: 3/13/2016, DST End: 11/6/2016
+. 2016-03-09 14:06:59.193 Login time: Wednesday, March 09, 2016 2:06:59 PM
+. 2016-03-09 14:06:59.193 --------------------------------------------------------------------------
+. 2016-03-09 14:06:59.193 Script: Retrospectively logging previous script records:
+> 2016-03-09 14:06:59.193 Script: open sftp://NJCEP_test:***@transfer.icfwebservices.com/
+. 2016-03-09 14:06:59.193 --------------------------------------------------------------------------
+. 2016-03-09 14:06:59.193 Session name: NJCEP_test@transfer.icfwebservices.com (Ad-Hoc site)
+. 2016-03-09 14:06:59.193 Host name: transfer.icfwebservices.com (Port: 22)
+. 2016-03-09 14:06:59.193 User name: NJCEP_test (Password: Yes, Key file: No)
+. 2016-03-09 14:06:59.193 Tunnel: No
+. 2016-03-09 14:06:59.193 Transfer Protocol: SFTP
+. 2016-03-09 14:06:59.193 Ping type: -, Ping interval: 30 sec; Timeout: 15 sec
+. 2016-03-09 14:06:59.193 Disable Nagle: No
+. 2016-03-09 14:06:59.193 Proxy: none
+. 2016-03-09 14:06:59.193 Send buffer: 262144
+. 2016-03-09 14:06:59.193 SSH protocol version: 2; Compression: No
+. 2016-03-09 14:06:59.193 Bypass authentication: No
+. 2016-03-09 14:06:59.193 Try agent: Yes; Agent forwarding: No; TIS/CryptoCard: No; KI: Yes; GSSAPI: No
+. 2016-03-09 14:06:59.193 Ciphers: aes,blowfish,3des,WARN,arcfour,des; Ssh2DES: No
+. 2016-03-09 14:06:59.193 KEX: dh-gex-sha1,dh-group14-sha1,dh-group1-sha1,rsa,WARN
+. 2016-03-09 14:06:59.193 SSH Bugs: A,A,A,A,A,A,A,A,A,A,A,A
+. 2016-03-09 14:06:59.193 Simple channel: Yes
+. 2016-03-09 14:06:59.193 Return code variable: Autodetect; Lookup user groups: A
+. 2016-03-09 14:06:59.193 Shell: default
+. 2016-03-09 14:06:59.193 EOL: 0, UTF: 2
+. 2016-03-09 14:06:59.193 Clear aliases: Yes, Unset nat.vars: Yes, Resolve symlinks: Yes
+. 2016-03-09 14:06:59.193 LS: ls -la, Ign LS warn: Yes, Scp1 Comp: No
+. 2016-03-09 14:06:59.193 SFTP Bugs: A,A
+. 2016-03-09 14:06:59.193 SFTP Server: default
+. 2016-03-09 14:06:59.194 Local directory: default, Remote directory: home, Update: Yes, Cache: Yes
+. 2016-03-09 14:06:59.194 Cache directory changes: Yes, Permanent: Yes
+. 2016-03-09 14:06:59.194 DST mode: 1
+. 2016-03-09 14:06:59.194 --------------------------------------------------------------------------
+. 2016-03-09 14:06:59.195 Looking up host "transfer.icfwebservices.com"
+. 2016-03-09 14:06:59.212 Connecting to 199.223.23.10 port 22
+. 2016-03-09 14:06:59.447 Server version: SSH-2.0-2.0
+. 2016-03-09 14:06:59.447 Using SSH protocol version 2
+. 2016-03-09 14:06:59.447 We claim version: SSH-2.0-WinSCP_release_5.7.7
+. 2016-03-09 14:06:59.514 Using Diffie-Hellman with standard group "group14"
+. 2016-03-09 14:06:59.514 Doing Diffie-Hellman key exchange with hash SHA-1
+. 2016-03-09 14:06:59.941 Verifying host key rsa2 0x10001,0xc287da9d72fd62f5 8ea70f0a6ca4b696 d4ea2c76baed3a5d 2deee8a87f6fd062 cd114e64f50d5473 d03d1237078d8ed0 7fe74ebda4568d32 d844879f7580dae7 8a9c72d85036673e f1e5fbf4bff01b4e 3993ba32b5e06603 06f3104c0e7c8c67 f5356467d3e0a426 f842a98e1eca5918 817767e18e508064 18a04bcdf4feb375  with fingerprint ssh-rsa 1024 e4:dd:11:2e:82:34:ab:62:59:1c:c8:62:1d:4b:48:99
+. 2016-03-09 14:06:59.942 Host key matches cached key
+. 2016-03-09 14:06:59.942 Host key fingerprint is:
+. 2016-03-09 14:06:59.942 ssh-rsa 1024 e4:dd:11:2e:82:34:ab:62:59:1c:c8:62:1d:4b:48:99
+. 2016-03-09 14:06:59.942 Initialised AES-256 SDCTR client->server encryption
+. 2016-03-09 14:06:59.943 Initialised HMAC-SHA-256 client->server MAC algorithm
+. 2016-03-09 14:07:00.010 Initialised AES-256 SDCTR server->client encryption
+. 2016-03-09 14:07:00.010 Initialised HMAC-SHA-256 server->client MAC algorithm
+! 2016-03-09 14:07:00.078 Using username "NJCEP_test".
+. 2016-03-09 14:07:00.152 Prompt (password, "SSH password", <no instructions>, "&Password: ")
+. 2016-03-09 14:07:00.152 Using stored password.
+. 2016-03-09 14:07:00.153 Sent password
+. 2016-03-09 14:07:00.293 Access granted
+. 2016-03-09 14:07:00.293 Opening session as main channel
+. 2016-03-09 14:07:00.367 Opened main channel
+. 2016-03-09 14:07:00.705 Started a shell/command
+. 2016-03-09 14:07:00.706 --------------------------------------------------------------------------
+. 2016-03-09 14:07:00.706 Using SFTP protocol.
+. 2016-03-09 14:07:00.706 Doing startup conversation with host.
+> 2016-03-09 14:07:00.706 Type: SSH_FXP_INIT, Size: 5, Number: -1
+< 2016-03-09 14:07:00.778 Type: SSH_FXP_VERSION, Size: 72, Number: -1
+. 2016-03-09 14:07:00.778 SFTP version 6 negotiated.
+. 2016-03-09 14:07:00.778 Server requests EOL sequence "\r\n".
+. 2016-03-09 14:07:00.778 Server support information (supported2):
+. 2016-03-09 14:07:00.778   Attribute mask: 33D, Attribute bits: 17, Open flags: 7
+. 2016-03-09 14:07:00.778   Access mask: 3, Open block vector: 0, Block vector: 0, Max read size: 1048576
+. 2016-03-09 14:07:00.778   Attribute extensions (0)
+. 2016-03-09 14:07:00.778   Extensions (0)
+. 2016-03-09 14:07:00.778 We will use UTF-8 strings as it is mandatory with SFTP version 4 and newer
+. 2016-03-09 14:07:00.778 Getting current directory name.
+. 2016-03-09 14:07:00.778 Getting real path for '.'
+> 2016-03-09 14:07:00.778 Type: SSH_FXP_REALPATH, Size: 11, Number: 16
+< 2016-03-09 14:07:00.848 Type: SSH_FXP_NAME, Size: 92, Number: 16
+. 2016-03-09 14:07:00.848 Real path is '/'
+. 2016-03-09 14:07:00.848 Startup conversation with host finished.
+< 2016-03-09 14:07:00.849 Script: Active session: [1] NJCEP_test@transfer.icfwebservices.com
+> 2016-03-09 14:07:00.850 Script: cd FromICF
+. 2016-03-09 14:07:00.850 Cached directory change via "FromICF" to "/FromICF".
+. 2016-03-09 14:07:00.851 Getting current directory name.
+< 2016-03-09 14:07:00.851 Script: /FromICF
+> 2016-03-09 14:07:00.851 Script: lcd config/partners/ICF/Inbound
+< 2016-03-09 14:07:00.852 Script: Error changing directory to 'config/partners/ICF/Inbound'.
+< 2016-03-09 14:07:00.852 Script: System Error.  Code: 2.
+< 2016-03-09 14:07:00.852 The system cannot find the file specified
+. 2016-03-09 14:07:00.852 Script: Failed
+. 2016-03-09 14:07:00.853 Script: Exit code: 1
+. 2016-03-09 14:07:00.853 Closing connection.
+. 2016-03-09 14:07:00.853 Sending special code: 12
+. 2016-03-09 14:07:00.853 Sent EOF message
